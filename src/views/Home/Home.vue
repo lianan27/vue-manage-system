@@ -1,5 +1,5 @@
 <template>
-  <div>Home</div>
+  <el-row class="home"> home </el-row>
 </template>
 
 <script>
@@ -12,4 +12,7 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+// 引入scss文件
+@import '~@/assets/scss/home';
+</style>
