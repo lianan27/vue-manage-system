@@ -8,4 +8,4 @@ Mock.setup({
 
 // 首页相关，写一个正则进行判断，判断由home作为路径的参数,拦截home\getData这个路径
 // 拦截的是 /home/getData,homeApi.getHomeData作为响应数据返回到axios
-Mock.mock(/\/home\/getData/, 'get', homeApi.getHomeData)
+Mock.mock(/\/home\/getData/, 'get', homeApi.getStatisticalData)
