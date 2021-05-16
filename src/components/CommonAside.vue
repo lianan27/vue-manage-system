@@ -1,21 +1,27 @@
 <template>
-  <el-menu :collapse="isCollapse" default-active="2" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-    <el-menu-item :index="item.path" v-for="item in noChildren" :key="item.path" @click="clickMenu(item)">
-      <i :class="'el-icon-' + item.icon"></i>
-      <span slot="title">{{ item.label }}</span>
-    </el-menu-item>
-    <el-submenu :index="item.path + ''" v-for="(item, index) in hasChildren" :key="index">
-      <template slot="title">
-        <i class="el-icon-location"></i>
-        <span>{{ item.label }}</span>
-      </template>
-      <el-menu-item-group>
-        <el-menu-item :index="item.path" v-for="(subItem, subIndex) in item.children" :key="subIndex" @click="clickMenu(subItem)">{{
-          subItem.label
-        }}</el-menu-item>
-      </el-menu-item-group>
-    </el-submenu>
-  </el-menu>
+  <div>
+    <el-menu :collapse="isCollapse" default-active="2" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+      <h3 v-show="!isCollapse">子不语后台管理系统</h3>
+      <!-- 折叠情况下显示的样式 -->
+      <h3 v-show="isCollapse">子不语</h3>
+      <el-menu-item :index="item.path" v-for="item in noChildren" :key="item.path" @click="clickMenu(item)">
+        <i :class="'el-icon-' + item.icon"></i>
+        <span slot="title">{{ item.label }}</span>
+      </el-menu-item>
+      <el-submenu :index="item.path + ''" v-for="(item, index) in hasChildren" :key="index">
+        <template slot="title">
+          <i :class="'el-icon-' + item.icon"></i>
+          <span slot="title">{{ item.label }}</span>
+        </template>
+        <el-menu-item-group>
+          <el-menu-item :index="item.path" v-for="(subItem, subIndex) in item.children" :key="subIndex" @click="clickMenu(subItem)">
+            <i :class="'el-icon-' + subItem.icon"></i>
+            <span slot="title">{{ subItem.label }}</span>
+          </el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+    </el-menu>
+  </div>
 </template>
 
 <script>
@@ -23,14 +29,17 @@ export default {
   computed: {
     // 通过计算属性来判断是否有children，有就返回，没有就不返回
     noChildren() {
-      return this.asideMenu.filter((item) => !item.children)
+      return this.menu.filter((item) => !item.children)
     },
     hasChildren() {
-      return this.asideMenu.filter((item) => item.children)
+      return this.menu.filter((item) => item.children)
     },
     isCollapse() {
       // 全局变量下的tab
       return this.$store.state.tab.isCollapse
+    },
+    menu() {
+      return this.$store.state.tab.menu
     },
   },
   data() {
@@ -90,6 +99,11 @@ export default {
 .el-menu {
   height: 100%;
   border: none;
+  h3 {
+    color: #fff;
+    text-align: center;
+    line-height: 48px;
+  }
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;

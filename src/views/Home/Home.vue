@@ -148,6 +148,7 @@ export default {
         //   name: '活跃用户',
         //   data: res.data.userData.map((item) => item.active),
         //   type: 'bar',
+        // barGap: 0
         // })
 
         // 视频饼图

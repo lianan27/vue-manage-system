@@ -25,4 +25,7 @@ export default {
 .el-header {
   background: #333;
 }
+.el-main {
+  padding-top: 0;
+}
 </style>
