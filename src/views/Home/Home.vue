@@ -37,10 +37,10 @@
       </el-card>
       <div class="graph">
         <el-card shadow="hover">
-          <echart style="height: 260px"></echart>
+          <echart style="height: 260px" :chartData="echartData.user"></echart>
         </el-card>
         <el-card shadow="hover">
-          <echart style="height: 260px"></echart>
+          <echart style="height: 260px" :chartData="echartData.video" :hasAxis="false"></echart>
         </el-card>
       </div>
     </el-col>
@@ -138,24 +138,24 @@ export default {
           })
         })
         // 用户柱状图
-        // this.echartData.user.xData = res.data.userData.map((item) => item.data)
-        // this.echartData.user.series.push({
-        //   name: '新增用户',
-        //   data: res.data.userData.map((item) => item.new),
-        //   type: 'bar',
-        // })
-        // this.echartData.user.series.push({
-        //   name: '活跃用户',
-        //   data: res.data.userData.map((item) => item.active),
-        //   type: 'bar',
-        // barGap: 0
-        // })
+        this.echartData.user.xData = res.data.userData.map((item) => item.date)
+        this.echartData.user.series.push({
+          name: '新增用户',
+          data: res.data.userData.map((item) => item.new),
+          type: 'bar',
+        })
+        this.echartData.user.series.push({
+          name: '活跃用户',
+          data: res.data.userData.map((item) => item.active),
+          type: 'bar',
+          barGap: 0,
+        })
 
         // 视频饼图
-        // this.echartData.video.series.push({
-        //   data: res.data.videoData,
-        //   type: 'pie',
-        // })
+        this.echartData.video.series.push({
+          data: res.data.videoData,
+          type: 'pie',
+        })
       })
     },
   },

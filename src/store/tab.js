@@ -54,11 +54,11 @@ export default {
         }
       })
       console.log(currentMenu, 'cur')
-      router.addRoutes(currentMenu)
-      // for (let i = 0, length = currentMenu.length; i < length; i += 1) {
-      //   const element = currentMenu[i]
-      //   router.addRoute(element)
-      // }
+      // router.addRoutes(currentMenu)
+      for (let i = 0, length = currentMenu.length; i < length; i += 1) {
+        const element = currentMenu[i]
+        router.addRoute(element)
+      }
     },
     SelectMenu(state, val) {
       if (val.name !== 'home') {
