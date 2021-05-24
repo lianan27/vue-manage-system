@@ -26,11 +26,6 @@
 // store里面的api
 import { mapState } from 'vuex'
 export default {
-  computed: {
-    ...mapState({
-      current: (state) => state.tab.currentMenu,
-    }),
-  },
   data() {
     return {
       userImg: require('../assets/image/1.jpg'),
@@ -42,9 +37,16 @@ export default {
     },
     logOut() {
       this.$store.commit('clearToken')
-      this.$store.commit('clearMenu')
+      window.sessionStorage.clear('token')
+      this.$router.push('/login')
+      // this.$store.commit('clearMenu')
       location.reload()
     },
+  },
+  computed: {
+    ...mapState({
+      current: (state) => state.tab.currentMenu,
+    }),
   },
 }
 </script>

@@ -126,14 +126,14 @@ export default {
         // 订单折线图
         const order = res.data.orderData
         // x轴的数据
-        this.echartData.order.xData = order
+        this.echartData.order.xData = order.date
         // 第一步去除series中的name部分——键名
-        let keyArray = Object.keys(order[0])
+        let keyArray = Object.keys(order.data[0])
         // 第二步，循环添加数据
         keyArray.forEach((key) => {
           this.echartData.order.series.push({
             name: key == 'wechat' ? '小程序' : key,
-            data: order.map((item) => item[key]),
+            data: order.data.map((item) => item[key]),
             type: 'line',
           })
         })

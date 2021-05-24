@@ -94,4 +94,47 @@ export default {
       }
     }
   },
+  /**
+   * 批量删除
+   * @param config
+   * @return {{code: number, data: {message: string}}}
+   */
+
+  batchremove: (config) => {
+    let { ids } = param20bj(config.url)
+    ids = ids.split(',')
+    List = List.filter((u) => !ids.includes(u.id))
+    return {
+      code: 20000,
+      data: {
+        message: '批量删除成功',
+      },
+    }
+  },
+  /**
+   * 修改用户
+   * @param id, name, addr, age, birth, sex
+   * @return {{code: number, data: {message: string}}}
+   */
+
+  updateUser: (config) => {
+    const { id, name, addr, age, birth, sex } = JSON.parse(config.body)
+    const sex_num = parseInt(sex)
+    List.some((u) => {
+      if (u.id === id) {
+        u.name = name
+        u.addr = addr
+        u.age = age
+        u.birth = birth
+        u.sex = sex_num
+        return true
+      }
+    })
+    return {
+      code: 20000,
+      data: {
+        message: '编辑成功',
+      },
+    }
+  },
 }
