@@ -64,10 +64,9 @@ export default {
       if (val.name !== 'home') {
         state.currentMenu = val
         // 去重，选择菜单
-        let result = state.tabsList.findIndex((item) => item.name === val.name)
+        var result = state.tabsList.findIndex((item) => item.name === val.name)
         // 为-1的时候是没有找到，就放进来，否则不进行任何操作
         result === -1 ? state.tabsList.push(val) : ''
-        state.tabsList.push(val)
       } else {
         state.currentMenu = null
       }
