@@ -6,8 +6,8 @@
       v-for="tag in tags"
       :closable="tag.name !== 'home'"
       :disable-transitions="false"
-      @close="handleClose(tag)"
       @click="changeMenu(tag)"
+      @close="handleClose(tag)"
       :effect="$route.name === tag.name ? 'dark' : 'plain'"
     >
       <!-- 文字描述 -->
@@ -19,12 +19,6 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 export default {
-  computed: {
-    // 和计算属性进行合并
-    ...mapState({
-      tags: (state) => state.tab.tabsList,
-    }),
-  },
   data() {
     return {
       dynamicTags: ['标签一', '标签二', '标签三'],
@@ -45,6 +39,12 @@ export default {
       this.$router.push({ name: item.name })
       this.$store.commit('SelectMenu', item)
     },
+  },
+  computed: {
+    // 和计算属性进行合并
+    ...mapState({
+      tags: (state) => state.tab.tabsList,
+    }),
   },
 }
 </script>

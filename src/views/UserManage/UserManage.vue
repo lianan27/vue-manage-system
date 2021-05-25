@@ -1,7 +1,7 @@
 <template>
   <div class="manage">
     <!-- 根据选择操作的不同显示新增还是更新 -->
-    <el-dialog :title="operateType === 'add' ? '新增用户' : '更新用户'" :visible.sync="isShow">
+    <el-dialog :title="operateType === 'add' ? '新增用户' : '编辑用户'" :visible.sync="isShow">
       <common-form inline :formLabel="operateFormLabel" :form="searchForm"></common-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="isShow = false">取 消</el-button>

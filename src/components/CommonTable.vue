@@ -2,18 +2,19 @@
   <div class="common-table">
     <!-- 数据要传进来,添加加载状态v-loading -->
     <el-table :data="tableData" height="90%" stripe v-loading="config.loading">
-      <el-table-column label="序号" width="85">
+      <el-table-column label="序号" width="85" fixed>
         <template slot-scope="scope">
           <!-- 内部的序号的一个属性 $index -->
           <span style="margin-left: 10px">{{ (config.page - 1) * 20 + scope.$index + 1 }}</span>
         </template>
       </el-table-column>
-      <el-table-column show-overflow-tooltip stripe v-for="item in tableLabel" :key="item.prop" :label="item.label" :width="item.width ? item.width : 125">
+      <!-- :width="item.width ? item.width : 125" -->
+      <el-table-column show-overflow-tooltip stripe v-for="item in tableLabel" :key="item.prop" :label="item.label">
         <template slot-scope="scope">
           <span style="margin-left: 10px">{{ scope.row[item.prop] }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="180">
+      <el-table-column label="操作" width="180" fixed="right">
         <template slot-scope="scope">
           <!-- scope是内部封装的变量，通过scope可以调用 -->
           <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
